@@ -1,63 +1,50 @@
 # Miscellaneous
 *.class
-*.lock
 *.log
 *.pyc
 *.swp
+.DS_Store
+.atom/
 .buildlog/
 .history
+.svn/
+migrate_working_dir/
 
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
 
-
-# Flutter repo-specific
-/bin/cache/
-/bin/internal/bootstrap.bat
-/bin/internal/bootstrap.sh
-/bin/mingit/
-/dev/benchmarks/mega_gallery/
-/dev/bots/.recipe_deps
-/dev/bots/android_tools/
-/dev/devicelab/ABresults*.json
-/dev/docs/doc/
-/dev/docs/flutter.docs.zip
-/dev/docs/lib/
-/dev/docs/pubspec.yaml
-/dev/integration_tests/**/xcuserdata
-/dev/integration_tests/**/Pods
-/packages/flutter/coverage/
-version
-analysis_benchmark.json
-
-# packages file containing multi-root paths
-.packages.generated
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
+**/ios/Flutter/flutter_assets
+**/ios/Flutter/flutter_export_environment.sh
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
-**/generated_plugin_registrant.dart
 .packages
-.pub-preload-cache/
+.pub-cache/
 .pub/
-build/
-flutter_*.png
-linked_*.ds
-unlinked.ds
-unlinked_spec.ds
+/build/
 
-# Android related
-**/android/**/gradle-wrapper.jar
-.gradle/
-**/android/captures/
-**/android/gradlew
-**/android/gradlew.bat
-**/android/local.properties
-**/android/**/GeneratedPluginRegistrant.java
-**/android/key.properties
-*.jks
+# Symbolication related
+app.*.symbols
 
-# iOS/XCode related
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# iOS specific
 **/ios/**/*.mode1v3
 **/ios/**/*.mode2v3
 **/ios/**/*.moved-aside
@@ -74,12 +61,11 @@ unlinked_spec.ds
 **/ios/**/profile
 **/ios/**/xcuserdata
 **/ios/.generated/
-**/ios/Flutter/.last_build_id
 **/ios/Flutter/App.framework
 **/ios/Flutter/Flutter.framework
 **/ios/Flutter/Flutter.podspec
 **/ios/Flutter/Generated.xcconfig
-**/ios/Flutter/ephemeral
+**/ios/Flutter/ephemeral/
 **/ios/Flutter/app.flx
 **/ios/Flutter/app.zip
 **/ios/Flutter/flutter_assets/
@@ -87,33 +73,120 @@ unlinked_spec.ds
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 
-# macOS
-**/Flutter/ephemeral/
-**/Pods/
+# macOS specific
 **/macos/Flutter/GeneratedPluginRegistrant.swift
-**/macos/Flutter/ephemeral
-**/xcuserdata/
 
-# Windows
+# Windows specific
 **/windows/flutter/generated_plugin_registrant.cc
 **/windows/flutter/generated_plugin_registrant.h
-**/windows/flutter/generated_plugins.cmake
 
-# Linux
+# Linux specific
 **/linux/flutter/generated_plugin_registrant.cc
 **/linux/flutter/generated_plugin_registrant.h
-**/linux/flutter/generated_plugins.cmake
+
+# Rust/FFI related
+**/target/
+**/rust/target/
+**/native/target/
+**/*.rs.bk
+Cargo.lock
+.cargo/
+
+# XaeroFlux specific
+**/xaeroflux/target/
+**/xaeroflux/*.so
+**/xaeroflux/*.dylib
+**/xaeroflux/*.dll
+**/xaeroflux/*.a
+**/xaeroflux/.cargo/
+
+# LMDB databases
+*.mdb
+*.lmdb
+**/data/
+**/storage/
+**/db/
+
+# DHT and P2P data
+**/peers/
+**/dht/
+**/swarm/
+**/*.pem
+**/*.key
+**/keys/
+
+# Ring buffer dumps
+**/ringbuffer_*.bin
+**/cache_*.bin
+
+# ZK Proof artifacts
+**/proofs/
+**/zkp_cache/
+**/*.proof
+
+# Falcon-512 key material
+**/falcon_*.key
+**/xaero_identity/
 
 # Coverage
 coverage/
+lcov.info
 
-# Symbols
-app.*.symbols
+# Web related
+/web/
+lib/generated_plugin_registrant.dart
 
-# Exceptions to above rules.
-!**/ios/**/default.mode1v3
-!**/ios/**/default.mode2v3
-!**/ios/**/default.pbxuser
-!**/ios/**/default.perspectivev3
-!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
-!/dev/ci/**/Gemfile.lock
+# Test related
+.test_coverage.dart
+test/.test_coverage.dart
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
+
+# Google Sheets cache (from your conversation)
+**/sheets_cache/
+**/*.gsheet.json
+
+# Flutter FFI bridge artifacts
+**/flutter_rust_bridge_generated/
+**/bridge_generated/
+**/*.h.bak
+
+# XCode build artifacts
+**/ios/Pods/
+**/ios/Podfile.lock
+**/ios/Runner.xcworkspace/xcshareddata/
+DerivedData/
+
+# Android build artifacts
+**/android/.gradle/
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+**/android/key.properties
+*.jks
+*.keystore
+
+# Firebase (if used)
+**/ios/firebase_app_id_file.json
+**/ios/GoogleService-Info.plist
+**/android/app/google-services.json
+
+# P2P Network state
+**/network_state/
+**/peer_cache/
+**/routing_table.bin
+
+# Cache aligned struct dumps
+**/struct_dumps/
+**/*.pod.bin
