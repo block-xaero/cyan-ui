@@ -1,97 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:ffi' as ffi;
 import 'dart:typed_data';
 import 'dart:math' show cos, sin;
 import 'theme/cyan_theme.dart';
-
-// ============================================================================
-// EVENTS & FFI LAYER
-// ============================================================================
-
-enum CyanEventType {
-  authCreateDid,
-  authSignIn,
-  authSignOut,
-  groupCreate,
-  groupJoin,
-  groupLeave,
-  groupInvite,
-  workspaceCreate,
-  workspaceJoin,
-  workspaceUpdate,
-  workspaceDelete,
-  objectCreate,
-  objectUpdate,
-  objectDelete,
-  objectShare,
-  canvasStroke,
-  canvasShape,
-  canvasText,
-  canvasImage,
-  canvasUndo,
-  canvasRedo,
-  canvasClear,
-  chatMessage,
-  chatTyping,
-  aiDigitizePhoto,
-  aiProcessResult,
-  syncRequest,
-  syncResponse,
-}
-
-class CyanEvent {
-  final CyanEventType type;
-  final String id;
-  final Uint8List payload;
-  final DateTime timestamp;
-
-  CyanEvent({
-    required this.type,
-    required this.id,
-    required this.payload,
-    DateTime? timestamp,
-  }) : timestamp = timestamp ?? DateTime.now();
-}
-
-class XaeroFluxFFI {
-  static void sendEvent(CyanEvent event) {
-    print('FFI: Sending ${event.type} event (${event.payload.length} bytes)');
-  }
-
-  static Stream<CyanEvent> getEventStream() {
-    return Stream.periodic(
-        const Duration(seconds: 2),
-        (i) => CyanEvent(
-              type: CyanEventType.syncResponse,
-              id: 'sync_response_$i',
-              payload: Uint8List.fromList([0, 1, 2, 3]),
-            ));
-  }
-}
-
-class CyanEventBus {
-  static final _instance = CyanEventBus._internal();
-  factory CyanEventBus() => _instance;
-  CyanEventBus._internal();
-
-  final _eventSubject = BehaviorSubject<CyanEvent>();
-
-  Stream<CyanEvent> get eventStream => _eventSubject.stream;
-  Stream<CyanEvent> eventsOfType(CyanEventType type) =>
-      eventStream.where((event) => event.type == type);
-
-  void dispatch(CyanEvent event) {
-    XaeroFluxFFI.sendEvent(event);
-    _eventSubject.add(event);
-  }
-
-  void dispose() {
-    _eventSubject.close();
-  }
-}
+import 'events/cyan_event.dart';
+import 'services/xaeroflux_ffi.dart';
+import 'services/cyan_event_bus.dart';
 
 // ============================================================================
 // CANVAS MODELS & STATE
